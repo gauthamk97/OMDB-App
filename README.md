@@ -1,7 +1,6 @@
 # OMBD App
 
 ## To Do :-
-* Basic Tab View Implementation
-* Search Bar Implementation
+* Search Bar and API Implementation
 * Favorite Movies
 * Workaround for Posters API?
