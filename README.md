@@ -3,4 +3,5 @@
 ## To Do :-
 * Favorite Movies
 * Core Data (for Fav Movies)
-* Workaround for Posters API?
+* Search Bar functionality for recent movies?
+* Loading indicators and Alerts
