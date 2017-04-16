@@ -104,6 +104,18 @@ class RecentsViewController: UIViewController, UISearchBarDelegate, UITableViewD
                         selectedMovie = json
                         print(selectedMovie)
                         
+                        //Takes care of duplicate records
+                        var i=0
+                        for movie in recentMovies {
+                            if movie["imdbID"]! == selectedMovie["imdbID"] as! String {
+                                recentMovies.remove(at: i)
+                                recentMovieData.remove(at: i)
+                                recentMoviesCount-=1
+                                i-=1
+                            }
+                            i+=1
+                        }
+                        
                         recentMovies.insert(["title":(json["Title"] as! String?)!, "imdbID":(json["imdbID"] as! String?)!], at: 0)
                         recentMovieData.insert(json, at: 0)
                         recentMoviesCount+=1

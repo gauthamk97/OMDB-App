@@ -1,6 +1,6 @@
 # OMBD App
 
 ## To Do :-
-* Duplicate Recent Movies 
 * Favorite Movies
+* Core Data (for Fav Movies)
 * Workaround for Posters API?
