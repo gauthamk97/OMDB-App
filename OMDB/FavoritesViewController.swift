@@ -14,6 +14,7 @@ class FavoritesViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        title = "Favorites"
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,7 +22,6 @@ class FavoritesViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
 

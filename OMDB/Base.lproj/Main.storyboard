@@ -9,7 +9,7 @@
         <!--Favorites View Controller-->
         <scene sceneID="FNb-fC-a0u">
             <objects>
-                <viewController id="42a-fl-lBU" customClass="FavoritesViewController" sceneMemberID="viewController">
+                <viewController id="42a-fl-lBU" customClass="FavoritesViewController" customModule="OMDB" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Xhy-ke-hmd"/>
                         <viewControllerLayoutGuide type="bottom" id="MfU-Tw-jyk"/>
@@ -60,7 +60,7 @@
         <!--Recents View Controller-->
         <scene sceneID="fGV-uF-jPe">
             <objects>
-                <viewController id="HMi-Nw-oxg" customClass="RecentsViewController" sceneMemberID="viewController">
+                <viewController id="HMi-Nw-oxg" customClass="RecentsViewController" customModule="OMDB" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="brh-Eu-U1e"/>
                         <viewControllerLayoutGuide type="bottom" id="sFL-Wi-21X"/>
@@ -135,11 +135,11 @@
             </objects>
             <point key="canvasLocation" x="-244" y="201"/>
         </scene>
-        <!--Item 1-->
+        <!--Navigation Controller-->
         <scene sceneID="JXG-cf-ZJR">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IUz-FF-u24" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 1" id="pJ4-nC-L5a"/>
+                    <tabBarItem key="tabBarItem" systemItem="recents" id="pJ4-nC-L5a"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PjK-Mt-PBt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -154,11 +154,11 @@
             </objects>
             <point key="canvasLocation" x="704.79999999999995" y="-125.4872563718141"/>
         </scene>
-        <!--Item 2-->
+        <!--Navigation Controller-->
         <scene sceneID="mKb-9D-vyB">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="47i-xa-8AF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 2" id="1S4-Sr-GIg"/>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="1S4-Sr-GIg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="drw-Ah-aMK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

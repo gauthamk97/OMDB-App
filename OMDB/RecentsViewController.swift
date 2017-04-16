@@ -14,6 +14,8 @@ class RecentsViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        title = "Recent Movies"
+        
     }
 
     override func didReceiveMemoryWarning() {
