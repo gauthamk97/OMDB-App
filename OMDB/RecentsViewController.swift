@@ -26,10 +26,14 @@ class RecentsViewController: UIViewController, UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         let movieName: String = searchBar.text!
-        let updatedMovieName = movieName.replacingOccurrences(of: " ", with: "+")
+        let updatedMovieName = movieName.replacingOccurrences(of: " ", with: "+") //For API Call
+        
         let urlToHit = URL(string: "http://www.omdbapi.com/?t=\(updatedMovieName)&plot=full") //Route to hit
         var request = URLRequest(url: urlToHit!)
         request.httpMethod = "POST"
+        
+        //Hiding keyboard
+        searchBar.resignFirstResponder()
     
         let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
             
@@ -57,12 +61,18 @@ class RecentsViewController: UIViewController, UISearchBarDelegate {
                 let jsonData = responseString?.data(using: .utf8)
                 if let json = try? JSONSerialization.jsonObject(with: jsonData!) as! [String: Any] {
                     
-                    if json["response"] as! String == "False" {
+                    if json["Response"] as! String == "False" {
                         //Alert saying movie doesn't exist
                     }
                     
                     else {
-                        print(json)
+                        selectedMovie = json
+                        print(selectedMovie)
+                        
+                        DispatchQueue.main.async {
+                            self.performSegue(withIdentifier: "toMovieInfo", sender: self)
+                        }
+                        
                     }
                     
                 }

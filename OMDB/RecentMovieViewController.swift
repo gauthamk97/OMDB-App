@@ -10,10 +10,31 @@ import UIKit
 
 class RecentMovieViewController: UIViewController {
 
+    @IBOutlet weak var movieNameLabel: UILabel!
+    @IBOutlet weak var relLabel: UILabel!
+    @IBOutlet weak var runningTimeLabel: UILabel!
+    @IBOutlet weak var genreLabel: UILabel!
+    @IBOutlet weak var directorLabel: UILabel!
+    @IBOutlet weak var actorsLabel: UILabel!
+    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var plotTextView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+        DispatchQueue.main.async {
+            self.title = "Movie Details"
+            self.movieNameLabel.text = selectedMovie["Title"] as? String
+            self.relLabel.text = selectedMovie["Released"] as? String
+            self.runningTimeLabel.text = selectedMovie["Runtime"] as? String
+            self.genreLabel.text = selectedMovie["Genre"] as? String
+            self.directorLabel.text = selectedMovie["Director"] as? String
+            self.actorsLabel.text = selectedMovie["Actors"] as? String
+            self.ratingLabel.text = selectedMovie["imdbRating"] as? String
+            self.plotTextView.text = selectedMovie["Plot"] as? String
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
