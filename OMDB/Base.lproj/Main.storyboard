@@ -77,6 +77,9 @@
                                     <constraint firstAttribute="height" constant="44" id="v17-90-i9r"/>
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="HMi-Nw-oxg" id="JDR-Yd-FH8"/>
+                                </connections>
                             </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
