@@ -1,6 +1,6 @@
 # OMBD App
 
 ## To Do :-
-* Search Bar and API Implementation
+* Duplicate Recent Movies 
 * Favorite Movies
 * Workaround for Posters API?
