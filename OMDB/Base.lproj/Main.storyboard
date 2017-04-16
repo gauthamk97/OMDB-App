@@ -73,6 +73,21 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pdc-A0-yY8">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="recentMovieCell" id="ZLE-0L-bcr">
+                                        <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZLE-0L-bcr" id="Jh0-39-0e8">
+                                            <frame key="frameInset" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="HMi-Nw-oxg" id="UdK-bF-8PJ"/>
+                                    <outlet property="delegate" destination="HMi-Nw-oxg" id="H4u-t7-FiR"/>
+                                </connections>
                             </tableView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="w8S-PW-cpt">
                                 <constraints>
@@ -97,6 +112,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="EaP-VE-Qdi"/>
                     <connections>
+                        <outlet property="recentMoviesTable" destination="Pdc-A0-yY8" id="bUc-G1-crw"/>
                         <segue destination="4bE-UK-Gth" kind="show" identifier="toMovieInfo" id="GCT-da-p1M"/>
                     </connections>
                 </viewController>
@@ -264,6 +280,7 @@
                         <outlet property="genreLabel" destination="Nhz-87-JFK" id="tFF-0f-9uz"/>
                         <outlet property="movieNameLabel" destination="Jnn-Xg-P30" id="71m-2Q-rlS"/>
                         <outlet property="plotTextView" destination="VN1-hK-rBo" id="lRS-sT-TGS"/>
+                        <outlet property="posterImageView" destination="wFT-ln-ZKh" id="f1d-t7-hsb"/>
                         <outlet property="ratingLabel" destination="L5d-9n-3eZ" id="vGa-Vn-oVq"/>
                         <outlet property="relLabel" destination="EH9-7q-382" id="eKr-Lh-fTG"/>
                         <outlet property="runningTimeLabel" destination="utk-cR-nIK" id="QB5-t9-3in"/>

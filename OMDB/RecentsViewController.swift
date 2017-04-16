@@ -8,19 +8,56 @@
 
 import UIKit
 
-class RecentsViewController: UIViewController, UISearchBarDelegate {
+class RecentsViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var recentMoviesTable: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         title = "Recent Movies"
         
+        recentMoviesTable.delegate = self
+        recentMoviesTable.dataSource = self
+        self.automaticallyAdjustsScrollViewInsets = false
+        
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        print("view did appear")
+        DispatchQueue.main.async {
+            self.recentMoviesTable.reloadData()
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return recentMoviesCount
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "recentMovieCell")
+        
+        cell?.textLabel?.text = recentMovies[indexPath.row]["title"]
+        
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedMovie = recentMovieData[indexPath.row]
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "toMovieInfo", sender: self)
+        }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -42,7 +79,6 @@ class RecentsViewController: UIViewController, UISearchBarDelegate {
             if (error != nil) {
                 if (httpStatus?.statusCode == nil) {
                     print("NO INTERNET")
-                    //                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "nointernetforclusters"), object: nil)
                 }
                 else {
                     print("Error occured : \(error)")
@@ -52,7 +88,6 @@ class RecentsViewController: UIViewController, UISearchBarDelegate {
                 
             else if httpStatus?.statusCode != 200 {
                 print("Error : HTTPStatusCode is \(httpStatus?.statusCode)")
-                //            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "servererror"), object: nil)
                 return
             }
                 
@@ -68,6 +103,10 @@ class RecentsViewController: UIViewController, UISearchBarDelegate {
                     else {
                         selectedMovie = json
                         print(selectedMovie)
+                        
+                        recentMovies.insert(["title":(json["Title"] as! String?)!, "imdbID":(json["imdbID"] as! String?)!], at: 0)
+                        recentMovieData.insert(json, at: 0)
+                        recentMoviesCount+=1
                         
                         DispatchQueue.main.async {
                             self.performSegue(withIdentifier: "toMovieInfo", sender: self)

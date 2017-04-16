@@ -18,6 +18,7 @@ class RecentMovieViewController: UIViewController {
     @IBOutlet weak var actorsLabel: UILabel!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var plotTextView: UITextView!
+    @IBOutlet weak var posterImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,11 @@ class RecentMovieViewController: UIViewController {
             self.actorsLabel.text = selectedMovie["Actors"] as? String
             self.ratingLabel.text = selectedMovie["imdbRating"] as? String
             self.plotTextView.text = selectedMovie["Plot"] as? String
+            
+            if let checkedURL = URL(string: selectedMovie["Poster"] as! String) {
+                self.downloadImage(url: checkedURL)
+                print(checkedURL)
+            }
         }
         
     }
@@ -42,6 +48,27 @@ class RecentMovieViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    func downloadImage(url: URL) {
+        
+        getDataFromUrl(url: url) { (data, response, error)  in
+            guard let data = data, error == nil else {
+                print("error")
+                return
+            }
+            DispatchQueue.main.async() {
+                self.posterImageView = UIImageView(image: UIImage(data: data))
+                print("set picture \(data)")
+            }
+        }
+    }
+    
+    func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
+        URLSession.shared.dataTask(with: url) {
+            (data, response, error) in
+            completion(data, response, error)
+            }.resume()
+    }
 
     /*
     // MARK: - Navigation
