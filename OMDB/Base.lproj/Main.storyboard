@@ -22,6 +22,20 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yr7-oF-YrW">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="favoritesCell" id="xgL-Hv-rVx">
+                                        <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xgL-Hv-rVx" id="QwN-XM-ZZb">
+                                            <frame key="frameInset" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="42a-fl-lBU" id="nMG-YY-kTK"/>
+                                    <outlet property="delegate" destination="42a-fl-lBU" id="IOQ-La-cq1"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -34,30 +48,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="IPw-BU-Phu"/>
                     <connections>
-                        <segue destination="ljn-Lg-sGA" kind="show" id="gZk-Ng-Ygf"/>
+                        <outlet property="favoritesTable" destination="Yr7-oF-YrW" id="0ys-eP-cfn"/>
+                        <segue destination="4bE-UK-Gth" kind="show" identifier="favToMovie" id="IPU-dT-vLK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LqL-88-zX4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1644" y="528.48575712143929"/>
-        </scene>
-        <!--Favorite Movie View Controller-->
-        <scene sceneID="7rx-oF-oIE">
-            <objects>
-                <viewController id="ljn-Lg-sGA" customClass="FavoriteMovieViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="A8R-ww-5hW"/>
-                        <viewControllerLayoutGuide type="bottom" id="QP6-7W-EgF"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="5Ue-8e-UiH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Afy-4L-xla" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2478" y="528"/>
         </scene>
         <!--Recents View Controller-->
         <scene sceneID="fGV-uF-jPe">
@@ -284,9 +281,19 @@
                             <constraint firstItem="lh7-NI-LdC" firstAttribute="leading" secondItem="EH9-7q-382" secondAttribute="leading" id="zkQ-in-RxZ"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="y0X-KE-dw4">
+                        <barButtonItem key="rightBarButtonItem" image="star" id="fxA-zx-Cg7" customClass="FavoriteButton" customModule="OMDB" customModuleProvider="target">
+                            <connections>
+                                <action selector="clickedFavorite:" destination="4bE-UK-Gth" id="Xre-Ql-4rf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="actorsLabel" destination="Er6-bi-Wg5" id="sms-XQ-0DA"/>
                         <outlet property="directorLabel" destination="lh7-NI-LdC" id="6h5-Wh-1kf"/>
+                        <outlet property="favButton" destination="fxA-zx-Cg7" id="qBP-wr-yGo"/>
                         <outlet property="genreLabel" destination="Nhz-87-JFK" id="tFF-0f-9uz"/>
                         <outlet property="movieNameLabel" destination="Jnn-Xg-P30" id="71m-2Q-rlS"/>
                         <outlet property="plotTextView" destination="VN1-hK-rBo" id="lRS-sT-TGS"/>
@@ -298,7 +305,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yq4-xm-ngw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2477.5999999999999" y="-125.4872563718141"/>
+            <point key="canvasLocation" x="2537" y="200"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="sZ8-jD-xdi">
@@ -357,4 +364,10 @@
             <point key="canvasLocation" x="704.79999999999995" y="528.48575712143929"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="star" width="25" height="25"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="IPU-dT-vLK"/>
+    </inferredMetricsTieBreakers>
 </document>

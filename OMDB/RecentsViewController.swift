@@ -20,16 +20,12 @@ class RecentsViewController: UIViewController, UISearchBarDelegate, UITableViewD
         // Do any additional setup after loading the view.
         title = "Recent Movies"
         
-        recentMoviesTable.delegate = self
-        recentMoviesTable.dataSource = self
         self.automaticallyAdjustsScrollViewInsets = false
         
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        print("view will appear")
         DispatchQueue.main.async {
-            
             //Deactivates loading indicator
             self.loadingIndicator.stopAnimating()
             
@@ -61,6 +57,8 @@ class RecentsViewController: UIViewController, UISearchBarDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //Setting which movie was selected
         selectedMovie = recentMovieData[indexPath.row]
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: "toMovieInfo", sender: self)
@@ -68,9 +66,9 @@ class RecentsViewController: UIViewController, UISearchBarDelegate, UITableViewD
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        mainSearchBar.text = ""
-        mainSearchBar.showsCancelButton = false
-        mainSearchBar.resignFirstResponder()
+        mainSearchBar.text = "" //Empties search bar
+        mainSearchBar.showsCancelButton = false //Hides cancel button
+        mainSearchBar.resignFirstResponder() //Hides keyboard
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -139,13 +137,14 @@ class RecentsViewController: UIViewController, UISearchBarDelegate, UITableViewD
                 let jsonData = responseString?.data(using: .utf8)
                 if let json = try? JSONSerialization.jsonObject(with: jsonData!) as! [String: Any] {
                     
+                    //Movie doesn't exist
                     if json["Response"] as! String == "False" {
                         self.showAlert(errorMessage: "Movie doesn't exist")
                     }
                     
+                    //Movie does exist
                     else {
                         selectedMovie = json
-                        print(selectedMovie)
                         
                         //Takes care of duplicate records
                         var i=0
@@ -159,6 +158,7 @@ class RecentsViewController: UIViewController, UISearchBarDelegate, UITableViewD
                             i+=1
                         }
                         
+                        //Adds movie to recent movies
                         recentMovies.insert(["title":(json["Title"] as! String?)!, "imdbID":(json["imdbID"] as! String?)!], at: 0)
                         recentMovieData.insert(json, at: 0)
                         recentMoviesCount+=1
