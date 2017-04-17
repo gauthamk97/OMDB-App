@@ -120,6 +120,7 @@
                     <navigationItem key="navigationItem" id="EaP-VE-Qdi"/>
                     <connections>
                         <outlet property="loadingIndicator" destination="LXL-Yv-OI5" id="9Jd-LD-FKd"/>
+                        <outlet property="mainSearchBar" destination="w8S-PW-cpt" id="L4j-9g-7CM"/>
                         <outlet property="recentMoviesTable" destination="Pdc-A0-yY8" id="bUc-G1-crw"/>
                         <segue destination="4bE-UK-Gth" kind="show" identifier="toMovieInfo" id="GCT-da-p1M"/>
                     </connections>

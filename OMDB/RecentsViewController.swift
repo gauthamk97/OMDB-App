@@ -9,7 +9,8 @@
 import UIKit
 
 class RecentsViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
-
+    
+    @IBOutlet weak var mainSearchBar: UISearchBar!
     @IBOutlet weak var recentMoviesTable: UITableView!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
@@ -66,7 +67,19 @@ class RecentsViewController: UIViewController, UISearchBarDelegate, UITableViewD
         }
     }
     
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        mainSearchBar.text = ""
+        mainSearchBar.showsCancelButton = false
+        mainSearchBar.resignFirstResponder()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        mainSearchBar.showsCancelButton = true
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        mainSearchBar.showsCancelButton = false
         
         let movieName: String = searchBar.text!
         let updatedMovieName = movieName.replacingOccurrences(of: " ", with: "+") //For API Call
