@@ -87,16 +87,37 @@ class RecentsViewController: UIViewController, UISearchBarDelegate, UITableViewD
             
             if (error != nil) {
                 if (httpStatus?.statusCode == nil) {
-                    print("NO INTERNET")
+                    self.showAlert(errorMessage: "No Internet")
                 }
                 else {
-                    print("Error occured : \(error)")
+                    self.showAlert(errorMessage: "Data Unavailable")
                 }
                 return;
             }
                 
             else if httpStatus?.statusCode != 200 {
-                print("Error : HTTPStatusCode is \(httpStatus?.statusCode)")
+                
+                if httpStatus?.statusCode == 401 {
+                    self.showAlert(errorMessage: "Unauthorized Access")
+                }
+                
+                else if httpStatus?.statusCode == 403 {
+                    self.showAlert(errorMessage: "Forbidden Access")
+                }
+                
+                else if httpStatus?.statusCode == 404 {
+                    self.showAlert(errorMessage: "Resource Not Found")
+                }
+                
+                else if httpStatus?.statusCode == 500 {
+                    self.showAlert(errorMessage: "Server Error")
+                }
+                
+                else {
+                    self.showAlert(errorMessage: "Unknown Error")
+                    print("HTTPStatusCode is \(httpStatus?.statusCode)")
+                }
+                
                 return
             }
                 
@@ -106,7 +127,7 @@ class RecentsViewController: UIViewController, UISearchBarDelegate, UITableViewD
                 if let json = try? JSONSerialization.jsonObject(with: jsonData!) as! [String: Any] {
                     
                     if json["Response"] as! String == "False" {
-                        //Alert saying movie doesn't exist
+                        self.showAlert(errorMessage: "Movie doesn't exist")
                     }
                     
                     else {
@@ -143,7 +164,17 @@ class RecentsViewController: UIViewController, UISearchBarDelegate, UITableViewD
         
     }
     
-
+    func showAlert(errorMessage: String) {
+        
+        DispatchQueue.main.async {
+            self.loadingIndicator.stopAnimating()
+            let alertView = UIAlertController(title: "Search Failed", message: errorMessage, preferredStyle: UIAlertControllerStyle.alert)
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+            alertView.addAction(okAction)
+            self.present(alertView, animated: true, completion: nil)
+        }
+        
+    }
     /*
     // MARK: - Navigation
 
