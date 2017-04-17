@@ -40,9 +40,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let itemRun = item.value(forKey: "runtime") as! String
                 let itemTitle = item.value(forKey: "title") as! String
                 let itemPoster = item.value(forKey: "poster") as! String
+                let itemPosterData = item.value(forKey: "posterdata") as! NSData
                 
                 //Creating dictionary from obtained data
-                let movieDetails = ["Actors": itemActors, "Director": itemDirector, "Genre": itemGenre, "imdbRating": itemRating, "Plot": itemPlot, "Released": itemRel, "Runtime": itemRun, "Title": itemTitle, "imdbID": itemID, "Poster": itemPoster]
+                let movieDetails = ["Actors": itemActors, "Director": itemDirector, "Genre": itemGenre, "imdbRating": itemRating, "Plot": itemPlot, "Released": itemRel, "Runtime": itemRun, "Title": itemTitle, "imdbID": itemID, "Poster": itemPoster, "posterData": itemPosterData] as [String : Any]
                 
                 //Saving in favorite movies
                 favoriteMovies[itemID] = movieDetails
@@ -115,6 +116,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             movie.setValue(item.value["Runtime"], forKey: "runtime")
             movie.setValue(item.value["Title"], forKey: "title")
             movie.setValue(item.value["Poster"], forKey: "poster")
+            movie.setValue(item.value["posterData"], forKey: "posterdata")
             
             do {
                 try managedContext.save()

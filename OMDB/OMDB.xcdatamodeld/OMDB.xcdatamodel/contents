@@ -8,11 +8,12 @@
         <attribute name="imdbrating" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="plot" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="poster" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="posterdata" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="released" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="runtime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="FavoriteMovie" positionX="-63" positionY="-18" width="128" height="195"/>
+        <element name="FavoriteMovie" positionX="-63" positionY="-18" width="128" height="210"/>
     </elements>
 </model>

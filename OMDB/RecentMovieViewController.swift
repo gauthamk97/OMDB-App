@@ -44,12 +44,25 @@ class RecentMovieViewController: UIViewController {
         
         //Obtain Image
         DispatchQueue.main.async {
-            if let checkedURL = URL(string: selectedMovie["Poster"] as! String) {
-                guard let imageData = NSData(contentsOf: checkedURL) else {
-                    return
-                }
+            
+            if let imageData = selectedMovie["posterData"] as? NSData {
+                print("image exists")
                 self.posterImageView.image = UIImage(data: imageData as Data)
             }
+            
+            else {
+                print("Image doesn't exist")
+                if let checkedURL = URL(string: selectedMovie["Poster"] as! String) {
+                    guard let imageData = NSData(contentsOf: checkedURL) else {
+                        return
+                    }
+                    
+                    self.posterImageView.image = UIImage(data: imageData as Data)
+                    recentMovieData[0]["posterData"] = imageData
+                }
+
+            }
+            
         }
         
     }
@@ -81,6 +94,7 @@ class RecentMovieViewController: UIViewController {
             
             //Save movie
             favoriteMovies[movieID] = selectedMovie
+            favoriteMovies[movieID]?["posterData"] = UIImageJPEGRepresentation(self.posterImageView.image!, 1)
             
         }
         
