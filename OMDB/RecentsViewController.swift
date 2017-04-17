@@ -11,6 +11,7 @@ import UIKit
 class RecentsViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var recentMoviesTable: UITableView!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +25,14 @@ class RecentsViewController: UIViewController, UISearchBarDelegate, UITableViewD
         
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        print("view did appear")
+    override func viewWillAppear(_ animated: Bool) {
+        print("view will appear")
         DispatchQueue.main.async {
+            
+            //Deactivates loading indicator
+            self.loadingIndicator.stopAnimating()
+            
+            //Reloads table data
             self.recentMoviesTable.reloadData()
         }
     }
@@ -64,6 +70,9 @@ class RecentsViewController: UIViewController, UISearchBarDelegate, UITableViewD
         
         let movieName: String = searchBar.text!
         let updatedMovieName = movieName.replacingOccurrences(of: " ", with: "+") //For API Call
+        
+        //Activates loading indicator
+        loadingIndicator.startAnimating()
         
         let urlToHit = URL(string: "http://www.omdbapi.com/?t=\(updatedMovieName)&plot=full") //Route to hit
         var request = URLRequest(url: urlToHit!)

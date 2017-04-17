@@ -98,20 +98,28 @@
                                     <outlet property="delegate" destination="HMi-Nw-oxg" id="JDR-Yd-FH8"/>
                                 </connections>
                             </searchBar>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="LXL-Yv-OI5">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="LXL-Yv-OI5" secondAttribute="trailing" id="A9E-2W-dtn"/>
                             <constraint firstAttribute="trailing" secondItem="Pdc-A0-yY8" secondAttribute="trailing" id="Dfe-oG-oWG"/>
                             <constraint firstItem="sFL-Wi-21X" firstAttribute="top" secondItem="Pdc-A0-yY8" secondAttribute="bottom" id="EZY-nA-9Nv"/>
                             <constraint firstItem="Pdc-A0-yY8" firstAttribute="top" secondItem="w8S-PW-cpt" secondAttribute="bottom" id="Gd3-HZ-j5r"/>
                             <constraint firstAttribute="trailing" secondItem="w8S-PW-cpt" secondAttribute="trailing" id="HIP-wm-pas"/>
+                            <constraint firstItem="LXL-Yv-OI5" firstAttribute="leading" secondItem="Eqh-Kp-E4x" secondAttribute="leading" id="Hrt-xr-iNQ"/>
                             <constraint firstItem="Pdc-A0-yY8" firstAttribute="leading" secondItem="Eqh-Kp-E4x" secondAttribute="leading" id="MUM-cn-cpN"/>
+                            <constraint firstItem="LXL-Yv-OI5" firstAttribute="top" secondItem="brh-Eu-U1e" secondAttribute="bottom" id="TSn-41-yxf"/>
+                            <constraint firstItem="sFL-Wi-21X" firstAttribute="top" secondItem="LXL-Yv-OI5" secondAttribute="bottom" id="mLm-Ti-LLa"/>
                             <constraint firstItem="w8S-PW-cpt" firstAttribute="top" secondItem="brh-Eu-U1e" secondAttribute="bottom" id="mvb-aW-a0Q"/>
                             <constraint firstItem="w8S-PW-cpt" firstAttribute="leading" secondItem="Eqh-Kp-E4x" secondAttribute="leading" id="poQ-qN-Mdu"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="EaP-VE-Qdi"/>
                     <connections>
+                        <outlet property="loadingIndicator" destination="LXL-Yv-OI5" id="9Jd-LD-FKd"/>
                         <outlet property="recentMoviesTable" destination="Pdc-A0-yY8" id="bUc-G1-crw"/>
                         <segue destination="4bE-UK-Gth" kind="show" identifier="toMovieInfo" id="GCT-da-p1M"/>
                     </connections>

@@ -4,4 +4,4 @@
 * Favorite Movies
 * Core Data (for Fav Movies)
 * Search Bar functionality for recent movies?
-* Loading indicators and Alerts
+* Alerts for errors
