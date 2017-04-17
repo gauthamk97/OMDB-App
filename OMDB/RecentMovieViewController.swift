@@ -43,9 +43,13 @@ class RecentMovieViewController: UIViewController {
         }
         
         //Obtain Image
-        if let checkedURL = URL(string: selectedMovie["Poster"] as! String) {
-            let imageData = NSData(contentsOf: checkedURL)
-            self.posterImageView.image = UIImage(data: imageData as! Data)
+        DispatchQueue.main.async {
+            if let checkedURL = URL(string: selectedMovie["Poster"] as! String) {
+                guard let imageData = NSData(contentsOf: checkedURL) else {
+                    return
+                }
+                self.posterImageView.image = UIImage(data: imageData as Data)
+            }
         }
         
     }

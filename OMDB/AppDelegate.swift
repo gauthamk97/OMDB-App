@@ -17,6 +17,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        guard let appdelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return false
+        }
+        
+        let managedContext = appdelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "FavoriteMovie")
+        do {
+            
+            //Fetching all movies from core data
+            storedMovies = try managedContext.fetch(fetchRequest)
+            for item in storedMovies {
+                
+                let itemID = item.value(forKey: "imdbid") as! String
+                let itemActors = item.value(forKey: "actors") as! String
+                let itemDirector = item.value(forKey: "director") as! String
+                let itemGenre = item.value(forKey: "genre") as! String
+                let itemRating = item.value(forKey: "imdbrating") as! String
+                let itemPlot = item.value(forKey: "plot") as! String
+                let itemRel = item.value(forKey: "released") as! String
+                let itemRun = item.value(forKey: "runtime") as! String
+                let itemTitle = item.value(forKey: "title") as! String
+                let itemPoster = item.value(forKey: "poster") as! String
+                
+                //Creating dictionary from obtained data
+                let movieDetails = ["Actors": itemActors, "Director": itemDirector, "Genre": itemGenre, "imdbRating": itemRating, "Plot": itemPlot, "Released": itemRel, "Runtime": itemRun, "Title": itemTitle, "imdbID": itemID, "Poster": itemPoster]
+                
+                //Saving in favorite movies
+                favoriteMovies[itemID] = movieDetails
+                
+                //Update favorite movie keys
+                favoriteMovieKeys = Array(favoriteMovies.keys)
+                print(favoriteMovies[itemID])
+                
+            }
+        }
+        catch let error as NSError {
+            print("Error fetching : \(error)")
+        }
+        
         return true
     }
 
@@ -41,7 +81,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
-        self.saveContext()
+
+        guard let appdelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appdelegate.persistentContainer.viewContext
+        
+        //Delete old data
+        for item in storedMovies {
+            managedContext.delete(item)
+            do {
+                try managedContext.save()
+            }
+            catch let error as NSError {
+                print("Error deleting : \(error)")
+            }
+        }
+        
+        //Store the favorite movie details
+        for item in favoriteMovies {
+            
+            let entity = NSEntityDescription.entity(forEntityName: "FavoriteMovie", in: managedContext)!
+            let movie = NSManagedObject(entity: entity, insertInto: managedContext)
+            
+            movie.setValue(item.value["imdbID"], forKey: "imdbid")
+            movie.setValue(item.value["Actors"], forKey: "actors")
+            movie.setValue(item.value["Director"], forKey: "director")
+            movie.setValue(item.value["Genre"], forKey: "genre")
+            movie.setValue(item.value["imdbRating"], forKey: "imdbrating")
+            movie.setValue(item.value["Plot"], forKey: "Plot")
+            movie.setValue(item.value["Released"], forKey: "released")
+            movie.setValue(item.value["Runtime"], forKey: "runtime")
+            movie.setValue(item.value["Title"], forKey: "title")
+            movie.setValue(item.value["Poster"], forKey: "poster")
+            
+            do {
+                try managedContext.save()
+            }
+            catch let error as NSError {
+                print("Error saving into core data : \(error)")
+            }
+            
+            self.saveContext()
+        }
+        
     }
 
     // MARK: - Core Data stack

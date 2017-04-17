@@ -17,7 +17,6 @@
 		AC1AE1991EA3E22F0092E0BD /* RecentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1AE1981EA3E22F0092E0BD /* RecentsViewController.swift */; };
 		AC1AE19B1EA3E23E0092E0BD /* RecentMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1AE19A1EA3E23E0092E0BD /* RecentMovieViewController.swift */; };
 		AC1AE19D1EA3E2800092E0BD /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1AE19C1EA3E2800092E0BD /* FavoritesViewController.swift */; };
-		AC1AE19F1EA3E2930092E0BD /* FavoriteMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1AE19E1EA3E2930092E0BD /* FavoriteMovieViewController.swift */; };
 		AC1AE1A21EA3F18D0092E0BD /* globalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1AE1A11EA3F18D0092E0BD /* globalVariables.swift */; };
 		AC1AE1A41EA49DC40092E0BD /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1AE1A31EA49DC40092E0BD /* FavoriteButton.swift */; };
 /* End PBXBuildFile section */
@@ -47,7 +46,6 @@
 		AC1AE1981EA3E22F0092E0BD /* RecentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentsViewController.swift; sourceTree = "<group>"; };
 		AC1AE19A1EA3E23E0092E0BD /* RecentMovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentMovieViewController.swift; sourceTree = "<group>"; };
 		AC1AE19C1EA3E2800092E0BD /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
-		AC1AE19E1EA3E2930092E0BD /* FavoriteMovieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteMovieViewController.swift; sourceTree = "<group>"; };
 		AC1AE1A11EA3F18D0092E0BD /* globalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = globalVariables.swift; sourceTree = "<group>"; };
 		AC1AE1A31EA49DC40092E0BD /* FavoriteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,7 +96,6 @@
 				AC1AE19A1EA3E23E0092E0BD /* RecentMovieViewController.swift */,
 				AC1AE1A31EA49DC40092E0BD /* FavoriteButton.swift */,
 				AC1AE19C1EA3E2800092E0BD /* FavoritesViewController.swift */,
-				AC1AE19E1EA3E2930092E0BD /* FavoriteMovieViewController.swift */,
 				AC1AE1A11EA3F18D0092E0BD /* globalVariables.swift */,
 				AC1AE17F1EA3DAA00092E0BD /* Assets.xcassets */,
 				AC1AE1811EA3DAA00092E0BD /* LaunchScreen.storyboard */,
@@ -229,7 +226,6 @@
 				AC1AE1761EA3DAA00092E0BD /* AppDelegate.swift in Sources */,
 				AC1AE19D1EA3E2800092E0BD /* FavoritesViewController.swift in Sources */,
 				AC1AE19B1EA3E23E0092E0BD /* RecentMovieViewController.swift in Sources */,
-				AC1AE19F1EA3E2930092E0BD /* FavoriteMovieViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
