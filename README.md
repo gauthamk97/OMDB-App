@@ -6,11 +6,6 @@ Welcome to the OMDB App. The app allows you to search for data of any movie you 
 
 ## Screenshots
 
-#### Movie Details Page
-![Movie Details Page](/Screenshots/movieInfo.png)
-
-#### Recent Movies Tab
-![Recent Movies](/Screenshots/recentMovies.png)
-
-#### Favorite Movies Tab
-![Favorite Movies](/Screenshots/favMovies.png)
+Movie Details Page | Recent Movies Tab | Favorite Movies Tab
+-------------------|-------------------|--------------------
+<img src="/Screenshots/movieInfo.png" width="250"> |<img src="/Screenshots/recentMovies.png" width="250">|<img src="/Screenshots/favMovies.png" width="250">
