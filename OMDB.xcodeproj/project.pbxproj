@@ -433,6 +433,7 @@
 				AC1AE1941EA3DAA00092E0BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AC1AE1951EA3DAA00092E0BD /* Build configuration list for PBXNativeTarget "OMDBTests" */ = {
 			isa = XCConfigurationList;
@@ -441,6 +442,7 @@
 				AC1AE1971EA3DAA00092E0BD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
